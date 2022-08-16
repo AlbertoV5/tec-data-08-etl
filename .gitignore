@@ -13,3 +13,4 @@ venv.bak/
 wikipedia-movies.json
 ./movies
 */*.csv
+*.csv

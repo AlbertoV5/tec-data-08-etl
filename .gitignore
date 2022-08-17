@@ -10,7 +10,8 @@ ENV/
 env.bak/
 venv.bak/
 .mypy_cache/
-wikipedia-movies.json
+*/*.json
+.*/*.json
 ./movies
 */*.csv
 *.csv

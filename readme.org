@@ -6,9 +6,44 @@
 #+PROPERTY: header-args :mkdirp yes :dir . :exports both
 #+PROPERTY: header-args:shell :results drawer :wrap example :results silent
 #+PROPERTY: header-args:python :exports both :results output replace
+#+PROPERTY: header-args:sql :engine postgresql :dbhost localhost :dbuser albertovaldez :database movie_data :results value html :post attr_wrap(data=*this*)
 
-* Header
+* Extract, Transform, Load
 
-* Header
+#+NAME: attr_wrap
+#+BEGIN_SRC python :var data="" :results silent :exports none
+import xml.etree.ElementTree as ET
 
-* Header
+def build_row(parent, data, tag):
+    child = ET.SubElement(parent, "tr")
+    for s in data.split("\t"):
+        ET.SubElement(child, tag).text = s
+    return child
+# XML
+data = data.split("\n")
+table = ET.Element("table")
+build_row(table, data[0], "th")
+for row in data[1:-1]:
+    build_row(table, row, "td")
+ET.dump(table)
+#+END_SRC
+
+#+attr_html: :width 800px
+[[./movies_query.png]]
+#+begin_src sql
+SELECT COUNT(*) FROM movies;
+#+end_src
+
+#+RESULTS:
+#+begin_export html
+<table><tr><th>count</th></tr><tr><td>6051</td></tr></table>
+#+end_export
+
+#+begin_src sql
+SELECT index, imdb_id FROM movies ORDER BY index DESC LIMIT 10;
+#+end_src
+
+#+RESULTS:
+#+begin_export html
+<table><tr><th>index</th><th>imdb_id</th></tr><tr><td>6051</td><td>tt3859310</td></tr><tr><td>6050</td><td>tt5795086</td></tr><tr><td>6049</td><td>tt6304162</td></tr><tr><td>6048</td><td>tt5390066</td></tr><tr><td>6047</td><td>tt5639354</td></tr><tr><td>6046</td><td>tt3567666</td></tr><tr><td>6045</td><td>tt4765284</td></tr><tr><td>6044</td><td>tt1724970</td></tr><tr><td>6043</td><td>tt5726616</td></tr><tr><td>6042</td><td>tt0974015</td></tr></table>
+#+end_export

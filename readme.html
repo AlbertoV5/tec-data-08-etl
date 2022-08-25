@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-08-25 Thu 18:04 -->
+<!-- 2022-08-25 Thu 18:05 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Challenge</title>
@@ -23,30 +23,30 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org90b8a97">Extract, Transform and Load Movie Data.</a>
+<li><a href="#orgc48178e">Extract, Transform and Load Movie Data.</a>
 <ul>
-<li><a href="#orgfa5fc2c">Overview</a></li>
-<li><a href="#orgdb3b202">Results</a>
+<li><a href="#org9d7659a">Overview</a></li>
+<li><a href="#org845a090">Results</a>
 <ul>
-<li><a href="#org7944bd2">Query of the Movies table</a></li>
-<li><a href="#org0959417">Query of the Ratings table</a></li>
+<li><a href="#orgad343fe">Query of the Movies table</a></li>
+<li><a href="#orga52e92b">Query of the Ratings table</a></li>
 </ul>
 </li>
-<li><a href="#orgd0ca4f6">Summary</a></li>
-<li><a href="#orga2dcc82">Closing Thoughts</a></li>
+<li><a href="#org44b12cd">Summary</a></li>
+<li><a href="#org5353457">Closing Thoughts</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org90b8a97" class="outline-2">
-<h2 id="org90b8a97">Extract, Transform and Load Movie Data.</h2>
-<div class="outline-text-2" id="text-org90b8a97">
+<div id="outline-container-orgc48178e" class="outline-2">
+<h2 id="orgc48178e">Extract, Transform and Load Movie Data.</h2>
+<div class="outline-text-2" id="text-orgc48178e">
 </div>
-<div id="outline-container-orgfa5fc2c" class="outline-3">
-<h3 id="orgfa5fc2c">Overview</h3>
-<div class="outline-text-3" id="text-orgfa5fc2c">
+<div id="outline-container-org9d7659a" class="outline-3">
+<h3 id="org9d7659a">Overview</h3>
+<div class="outline-text-3" id="text-org9d7659a">
 <p>
 In this analysis, we mainly focused on the heuristics of the ETL process. We were able to clean data thoroughly and get a better view of our data using Python and SQL to load the results into a database.
 </p>
@@ -57,9 +57,9 @@ As this is our first time dealing with this amount of data in this fashion, we u
 </div>
 </div>
 
-<div id="outline-container-orgdb3b202" class="outline-3">
-<h3 id="orgdb3b202">Results</h3>
-<div class="outline-text-3" id="text-orgdb3b202">
+<div id="outline-container-org845a090" class="outline-3">
+<h3 id="org845a090">Results</h3>
+<div class="outline-text-3" id="text-org845a090">
 <p>
 We managed to store the data in our SQL database by connecting to it through Python.
 </p>
@@ -80,9 +80,9 @@ We managed to store the data in our SQL database by connecting to it through Pyt
 </pre>
 </div>
 
-<div id="outline-container-org7944bd2" class="outline-4">
-<h4 id="org7944bd2">Query of the Movies table</h4>
-<div class="outline-text-4" id="text-org7944bd2">
+<div id="outline-container-orgad343fe" class="outline-4">
+<h4 id="orgad343fe">Query of the Movies table</h4>
+<div class="outline-text-4" id="text-orgad343fe">
 <p width="800px">
 <img src="./movies_query.png" alt="movies_query.png" width="800px" />
 We can also use the basic SQL queries from terminal or any SQL supporting environment.
@@ -104,11 +104,11 @@ We can also use the basic SQL queries from terminal or any SQL supporting enviro
 </div>
 </div>
 
-<div id="outline-container-org0959417" class="outline-4">
-<h4 id="org0959417">Query of the Ratings table</h4>
-<div class="outline-text-4" id="text-org0959417">
+<div id="outline-container-orga52e92b" class="outline-4">
+<h4 id="orga52e92b">Query of the Ratings table</h4>
+<div class="outline-text-4" id="text-orga52e92b">
 
-<div id="orgfbe791e" class="figure">
+<div id="org22fb691" class="figure">
 <p><img src="./ratings_query.png" alt="ratings_query.png" width="700px" />
 </p>
 </div>
@@ -116,9 +116,9 @@ We can also use the basic SQL queries from terminal or any SQL supporting enviro
 </div>
 </div>
 
-<div id="outline-container-orgd0ca4f6" class="outline-3">
-<h3 id="orgd0ca4f6">Summary</h3>
-<div class="outline-text-3" id="text-orgd0ca4f6">
+<div id="outline-container-org44b12cd" class="outline-3">
+<h3 id="org44b12cd">Summary</h3>
+<div class="outline-text-3" id="text-org44b12cd">
 <p>
 The most important part was joining our two tables where we made a few key judgements on the tables we wanted to keep and which one were not worth to join.
 </p>
@@ -187,9 +187,9 @@ The most important part was joining our two tables where we made a few key judge
 </div>
 </div>
 
-<div id="outline-container-orga2dcc82" class="outline-3">
-<h3 id="orga2dcc82">Closing Thoughts</h3>
-<div class="outline-text-3" id="text-orga2dcc82">
+<div id="outline-container-org5353457" class="outline-3">
+<h3 id="org5353457">Closing Thoughts</h3>
+<div class="outline-text-3" id="text-org5353457">
 <p>
 ETL may not be the most comfortable part of the data pipeline but its probably the most crucial. Clean data has become more and more important in the way we solve problems, design programs, and learn about the world.
 </p>
@@ -199,7 +199,7 @@ ETL may not be the most comfortable part of the data pipeline but its probably t
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Alberto Valdez</p>
-<p class="date">Created: 2022-08-25 Thu 18:04</p>
+<p class="date">Created: 2022-08-25 Thu 18:05</p>
 </div>
 </body>
 </html>

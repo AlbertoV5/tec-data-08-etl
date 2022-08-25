@@ -8,8 +8,6 @@
 #+PROPERTY: header-args:python :exports both :results output replace
 #+PROPERTY: header-args:sql :engine postgresql :dbhost localhost :dbuser albertovaldez :database movie_data :results value html :post attr_wrap(data=*this*)
 
-* Extract, Transform, Load
-
 #+NAME: attr_wrap
 #+BEGIN_SRC python :var data="" :results silent :exports none
 import xml.etree.ElementTree as ET
@@ -28,8 +26,36 @@ for row in data[1:-1]:
 ET.dump(table)
 #+END_SRC
 
+* Extract, Transform and Load Movie Data.
+
+** Overview
+
+In this analysis, we mainly focused on the heuristics of the ETL process. We were able to clean data thoroughly and get a better view of our data using Python and SQL to load the results into a database.
+
+As this is our first time dealing with this amount of data in this fashion, we used a very procedural approach to make sure all our steps were correct. At the same time, we created a few functions to reuse in future endeavors.
+
+** Results
+
+We managed to store the data in our SQL database by connecting to it through Python.
+
+#+begin_src python
+from sqlalchemy import create_engine
+
+db_dns = "postgresql://albertovaldez@localhost:5432/movie_data2"
+engine = create_engine(db_dns)
+query = "SELECT COUNT(*) FROM movies;"
+count= engine.execute(query).fetchall()
+print(count)
+#+end_src
+
+#+RESULTS:
+: [(6051,)]
+
+*** Query of the Movies table
 #+attr_html: :width 800px
 [[./movies_query.png]]
+We can also use the basic SQL queries from terminal or any SQL supporting environment.
+
 #+begin_src sql
 SELECT COUNT(*) FROM movies;
 #+end_src
@@ -40,10 +66,33 @@ SELECT COUNT(*) FROM movies;
 #+end_export
 
 #+begin_src sql
-SELECT index, imdb_id FROM movies ORDER BY index DESC LIMIT 10;
+SELECT index, imdb_id FROM movies ORDER BY index DESC LIMIT 5;
 #+end_src
 
 #+RESULTS:
 #+begin_export html
-<table><tr><th>index</th><th>imdb_id</th></tr><tr><td>6051</td><td>tt3859310</td></tr><tr><td>6050</td><td>tt5795086</td></tr><tr><td>6049</td><td>tt6304162</td></tr><tr><td>6048</td><td>tt5390066</td></tr><tr><td>6047</td><td>tt5639354</td></tr><tr><td>6046</td><td>tt3567666</td></tr><tr><td>6045</td><td>tt4765284</td></tr><tr><td>6044</td><td>tt1724970</td></tr><tr><td>6043</td><td>tt5726616</td></tr><tr><td>6042</td><td>tt0974015</td></tr></table>
+<table><tr><th>index</th><th>imdb_id</th></tr><tr><td>6051</td><td>tt3859310</td></tr><tr><td>6050</td><td>tt5795086</td></tr><tr><td>6049</td><td>tt6304162</td></tr><tr><td>6048</td><td>tt5390066</td></tr><tr><td>6047</td><td>tt5639354</td></tr></table>
 #+end_export
+
+*** Query of the Ratings table
+
+#+attr_html: :width 700px
+[[./ratings_query.png]]
+
+** Summary
+
+The most important part was joining our two tables where we made a few key judgements on the tables we wanted to keep and which one were not worth to join.
+
+| Wiki                  | Movielens            | Resolution                             |
+|-----------------------+----------------------+----------------------------------------|
+| title_wiki            | title_kaggle         | DROP WIKIPEDIA                         |
+| running_time          | runtime              | KEEP KAGGLE, FILL ZEROS WITH WIKIPEDIA |
+| budget_wiki           | budget_kaggle        | KEEP KAGGLE, FILL ZEROS WITH WIKIPEDIA |
+| box_office            | revenue              | KEEP KAGGLE, FILL ZEROS WITH WIKIPEDIA |
+| release_date_wiki     | release_date_kaggle  | DROP WIKIPEDIA                         |
+| language              | original_language    | DROP WIKIPEDIA                         |
+| Production company(s) | production_companies | DROP WIKIPEDIA                         |
+
+** Closing Thoughts
+
+ETL may not be the most comfortable part of the data pipeline but its probably the most crucial. Clean data has become more and more important in the way we solve problems, design programs, and learn about the world.
